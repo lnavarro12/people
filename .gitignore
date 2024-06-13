@@ -8,6 +8,9 @@ dist/
 __pycache__/
 .vscode
 
+# venv
+venv/
+
 # migraciones
 /migrations/
 
