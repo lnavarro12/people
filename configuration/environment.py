@@ -2,7 +2,9 @@
 
 import os
 import dataclasses
+from dotenv import load_dotenv
 
+load_dotenv()
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -30,6 +32,10 @@ class DevelopmentConfig(Config):
         f"postgresql://{USER}:{PASSWORD}@{HOST}:{DBPORT}/{DATABASE}"
     )
 
+    CACHE_TYPE = os.getenv('CACHE_TYPE')
+    CACHE_REDIS_HOST = os.getenv('CACHE_REDIS_HOST')
+    CACHE_REDIS_PORT = os.getenv('CACHE_REDIS_PORT')
+    CACHE_REDIS_DB = os.getenv('CACHE_REDIS_DB')
 
 @dataclasses.dataclass
 class TestingConfig(Config):
