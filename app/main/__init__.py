@@ -16,6 +16,6 @@ def create_app(config_name):
     app.config.from_object(config_by_name[config_name])
 
     # Initialize extensions
-    cache.init_app(app)
+    #cache.init_app(app)
     db.init_app(app)
     return app

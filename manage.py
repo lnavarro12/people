@@ -3,21 +3,25 @@
 import os
 import unittest
 from dotenv import load_dotenv
+from flask_script import Manager
 from app.main import create_app
+from app import blueprint
 
 load_dotenv()
 
 app = create_app(os.getenv("RUN_MODE") or "dev")
+app.register_blueprint(blueprint)
 app.app_context().push()
+manager = Manager(app)
 
 
-@app.cli.command("run")
+@manager.command
 def run():
     """Running flask app"""
     app.run(host="0.0.0.0")
 
 
-@app.cli.command("test")
+@manager.command
 def test():
     """Running unit tests"""
     tests = unittest.TestLoader().discover("app/test", pattern="test*.py")
@@ -28,4 +32,4 @@ def test():
 
 
 if __name__ == "__main__":
-    app.run()
+    manager.run()

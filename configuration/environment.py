@@ -23,13 +23,13 @@ class DevelopmentConfig(Config):
 
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    HOST = os.getenv("POSTGRES_HOST")
-    USER = os.getenv("POSTGRES_USER")
-    PASSWORD = os.getenv("POSTGRES_PASSWORD")
-    DBPORT = os.getenv("DBPORT")
-    DATABASE = os.getenv("POSTGRES_DATABASE")
+    HOST = os.getenv('MYSQL_HOST')
+    USER = os.getenv('MYSQL_USER')
+    PASSWORD = os.getenv('MYSQL_PASSWORD')
+    DBPORT = os.getenv('DBPORT')
+    DATABASE = os.getenv('MYSQL_PASSWORD')
     SQLALCHEMY_DATABASE_URI = (
-        f"postgresql://{USER}:{PASSWORD}@{HOST}:{DBPORT}/{DATABASE}"
+        f"mysql+pymysql://{USER}:{PASSWORD}@{HOST}:{DBPORT}/{DATABASE}"
     )
 
     CACHE_TYPE = os.getenv('CACHE_TYPE')

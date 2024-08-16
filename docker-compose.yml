@@ -1,0 +1,16 @@
+# version or standard that we use to write this file
+version: '3'
+
+# What are the containers I'm going to build and those name one by one
+services: 
+  app:
+    container_name: app_parameterization_module
+    restart: always
+    build: .
+    env_file: .env
+    volumes:
+      - .:/app
+    ports:
+      - "8050:5000"
+    command: >
+        bash -c "python manage.py run"
