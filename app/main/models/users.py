@@ -13,6 +13,7 @@ class User(db.Model):
     second_last_name: Mapped[str] = db.Column(db.String(80), nullable=True)
     username: Mapped[str] = db.Column(db.String(80), unique=True, nullable=False)
     password_hash: Mapped[str] = db.Column(db.String(100))
+    email: Mapped[str] = db.Column(db.String(80), unique=True, nullable=False)
 
     @property
     def password(self):
