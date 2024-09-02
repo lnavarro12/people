@@ -3,11 +3,13 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_caching import Cache
+from flask_bcrypt import Bcrypt
 import redis
 from configuration.environment import config_by_name
 
 db = SQLAlchemy()
 cache = Cache()
+flask_bcrypt = Bcrypt()
 
 
 def create_app(config_name):

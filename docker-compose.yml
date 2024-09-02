@@ -1,16 +1,34 @@
 # version or standard that we use to write this file
-version: '3'
+version: '3.8'
 
 # What are the containers I'm going to build and those name one by one
-services: 
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    env_file: .env
+    ports:
+      - "5432:5432"
   app:
-    container_name: app_parameterization_module
+    container_name: app_people
     restart: always
     build: .
     env_file: .env
     volumes:
       - .:/app
     ports:
-      - "8050:5000"
+      - "8070:5000"
+    depends_on:
+      - db
     command: >
         bash -c "python manage.py run"
+  
+  #test:
+  #  container_name: app_people-test
+  #  restart: always
+  #  build: .
+  #  env_file: .env
+  #  volumes:
+  #    - .:/app
+  #  command: >
+  #      bash -c "pytest -v --maxfail=1 --disable-warnings"

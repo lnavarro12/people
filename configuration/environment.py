@@ -2,9 +2,6 @@
 
 import os
 import dataclasses
-from dotenv import load_dotenv
-
-load_dotenv()
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -23,13 +20,13 @@ class DevelopmentConfig(Config):
 
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    HOST = os.getenv('MYSQL_HOST')
-    USER = os.getenv('MYSQL_USER')
-    PASSWORD = os.getenv('MYSQL_PASSWORD')
+    HOST = os.getenv('POSTGRES_HOST')
+    USER = os.getenv('POSTGRES_USER')
+    PASSWORD = os.getenv('POSTGRES_PASSWORD')
     DBPORT = os.getenv('DBPORT')
-    DATABASE = os.getenv('MYSQL_PASSWORD')
+    DATABASE = os.getenv('POSTGRES_DB')
     SQLALCHEMY_DATABASE_URI = (
-        f"mysql+pymysql://{USER}:{PASSWORD}@{HOST}:{DBPORT}/{DATABASE}"
+        f"postgresql://{USER}:{PASSWORD}@{HOST}:{DBPORT}/{DATABASE}"
     )
 
     CACHE_TYPE = os.getenv('CACHE_TYPE')
@@ -60,13 +57,13 @@ class ProductionConfig(Config):
     """Production configuration"""
 
     DEBUG = False
-    HOST = None
-    USER = None
-    PASSWORD = None
-    DBPORT = None
-    DATABASE = None
+    HOST = os.getenv('POSTGRES_HOST')
+    USER = os.getenv('POSTGRES_USER')
+    PASSWORD = os.getenv('POSTGRES_PASSWORD')
+    DBPORT = os.getenv('DBPORT')
+    DATABASE = os.getenv('POSTGRES_DB')
     SQLALCHEMY_DATABASE_URI = (
-        f"postgresql://{USER}:{PASSWORD}@{HOST}:{DBPORT}/{DATABASE}"
+        f"postgresql://${USER}:${PASSWORD}@{HOST}:{DBPORT}/${DATABASE}"
     )
 
 
