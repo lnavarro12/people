@@ -4,6 +4,7 @@ from flask import Blueprint
 from flask_cors import CORS
 from app.main.features.users.controller import user_ns
 
+# Modular Applications with Blueprints 
 blueprint = Blueprint("api", __name__)
 CORS(blueprint)
 
