@@ -45,6 +45,23 @@ Ensure you have Docker installed and running on your machine.
     flask db upgrade
     ```
 
+## Implement pytest
+
+*pytest* is a test framework for Python used to write, organize, and run test cases. After setting up your basic test structure, pytest makes it easy to write tests and provides a lot of flexibility for running the tests. pytest satisfies the key aspects of a good test environment:
+
+- tests are fun to write
+- tests can be written quickly by using helper functions (fixtures)
+- tests can be executed with a single command
+- tests run quickly
+
+*you may use unit tests to test:*
+
+- Database models (often defined in models.py)
+- Utility functions (for example, server-side validation checks) that your view functions call
+
+base on:
+- https://testdriven.io/blog/flask-pytest/
+- https://coderpad.io/blog/development/a-guide-to-database-unit-testing-with-pytest-and-sqlalchemy/
 
 
 

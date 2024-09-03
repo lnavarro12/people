@@ -6,9 +6,15 @@ services:
   db:
     image: postgres:latest
     restart: always
-    env_file: .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: app_people
     ports:
       - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
   app:
     container_name: app_people
     restart: always
@@ -18,17 +24,18 @@ services:
       - .:/app
     ports:
       - "8070:5000"
-    depends_on:
-      - db
     command: >
         bash -c "python manage.py run"
-  
-  #test:
-  #  container_name: app_people-test
-  #  restart: always
-  #  build: .
-  #  env_file: .env
-  #  volumes:
-  #    - .:/app
-  #  command: >
-  #      bash -c "pytest -v --maxfail=1 --disable-warnings"
+
+  test:
+    container_name: app_people_test
+    restart: always
+    build: .
+    env_file: .env
+    volumes:
+      - .:/app
+    command: >
+        bash -c "pytest -v --maxfail=1 --disable-warnings"
+
+volumes:
+  postgres:
